@@ -9,11 +9,10 @@ class SupervisorVolunteersController < ApplicationController
     redirect_to after_action_path(supervisor_volunteer_parent)
   end
 
-  def destroy
+  def deactivate
     supervisor_volunteer = SupervisorVolunteer.find(params[:id])
     supervisor = supervisor_volunteer.supervisor
-    supervisor_volunteer.delete
-
+    supervisor_volunteer.update(is_active: false)
     redirect_to after_action_path(supervisor)
   end
 

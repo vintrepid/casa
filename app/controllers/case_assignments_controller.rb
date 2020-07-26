@@ -15,10 +15,7 @@ class CaseAssignmentsController < ApplicationController
   end
 
   def destroy
-    case_assignment = CaseAssignment.find(params[:id])
-    case_assignment.destroy
-
-    redirect_to after_action_path(case_assignment_parent)
+    raise "Do not do this, mark is_active=false"
   end
 
   def unassign
