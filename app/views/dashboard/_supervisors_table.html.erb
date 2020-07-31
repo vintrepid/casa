@@ -21,9 +21,12 @@
         <td id="name">
           <%= link_to(supervisor.display_name, edit_supervisor_path(supervisor)) %>
         </td>
-        <td id="volunteer-assignments"> <%= supervisor.volunteers.count %></td>
+        <td id="volunteer-assignments"> <%= supervisor.volunteers.size %></td>
         <td id="serving-transition-aged-youth">
-          <%= supervisor.volunteers.select { |v| v.serving_transition_aged_youth? }.count %>
+          <% Rails.logger.info "\n\n\n\n !!!!!!! #{supervisor.display_name} " %>
+          <%= supervisor.volunteers.transition_aged_youth.group('supervisor_volunteers.volunteer_id').size.keys.size #select { |v| v.serving_transition_aged_youth? }.size 
+          %>
+          <% Rails.logger.info "\n\n\n\n :( :( :( :( :( !!!!!!! " %>
         </td>
         <td id="no-contact">
           <%=

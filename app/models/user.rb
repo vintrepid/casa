@@ -7,10 +7,15 @@ class User < ApplicationRecord
 
   has_many :case_assignments, foreign_key: "volunteer_id"
   has_many :casa_cases, through: :case_assignments
+
   has_many :case_contacts, foreign_key: "creator_id"
 
   has_many :supervisor_volunteers, foreign_key: "supervisor_id"
-  has_many :volunteers, through: :supervisor_volunteers
+  has_many :volunteers, through: :supervisor_volunteers do
+    def transition_aged_youth
+      joins(:casa_cases).where(casa_cases: { transition_aged_youth: true })
+    end
+  end
 
   has_one :supervisor_volunteer, foreign_key: "volunteer_id"
   has_one :supervisor, through: :supervisor_volunteer
