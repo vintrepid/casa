@@ -51,20 +51,20 @@
       <h3>Assigned Volunteers</h3>
       <table class='table volunteer-list'>
         <thead>
-          <tr>
-            <th>Volunteer Name</th>
-            <th>Volunteer Email</th>
-            <th>Unassign</th>
-          </tr>
+        <tr>
+          <th>Volunteer Name</th>
+          <th>Volunteer Email</th>
+          <th>Unassign</th>
+        </tr>
         </thead>
         <tbody>
-          <% @assigned_volunteers.each do |assignment| %>
-            <tr>
-              <td><%= link_to assignment.volunteer.decorate.name, edit_volunteer_path(assignment.volunteer) %></td>
-              <td><%= assignment.volunteer.email %></td>
-              <td><%= button_to 'Unassign', supervisor_volunteer_path(assignment), method: :delete, class: "btn btn-danger" %></td>
-            </tr>
-          <% end %>
+        <% @assigned_volunteers.each do |assignment| %>
+          <tr>
+            <td><%= link_to assignment.volunteer.decorate.name, edit_volunteer_path(assignment.volunteer) %></td>
+            <td><%= assignment.volunteer.email %></td>
+            <td><%= button_to 'Unassign', supervisor_volunteer_path(assignment), method: :delete, class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>

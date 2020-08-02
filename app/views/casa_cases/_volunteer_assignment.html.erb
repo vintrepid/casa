@@ -5,34 +5,34 @@
       <h3>Assigned Volunteers</h3>
       <table class='table case-list'>
         <thead>
-          <tr>
-            <th>Volunteer Name</th>
-            <th>Volunteer Email</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
+        <tr>
+          <th>Volunteer Name</th>
+          <th>Volunteer Email</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <% @casa_case.case_assignments.each do |assignment| %>
-            <tr>
-              <td><%= link_to assignment&.volunteer&.display_name, edit_volunteer_path(assignment.volunteer) %></td>
-              <td><%= assignment&.volunteer&.email %></td>
-              <td>
-                <% if assignment.is_active? %>
-                  <span class='badge badge-success text-uppercase'>Assigned</span>
-                <% else %>
-                  <span class="badge badge-danger text-uppercase"><%= assignment.volunteer.active_volunteer ? "Unassigned" : "Deactivated volunteer" %></span>
-                <% end %>
-              </td>
-              <td>
-                <% if assignment.is_active? && (current_user.supervisor? || current_user.casa_admin?) %>
-                  <%= button_to 'Unassign Volunteer', unassign_case_assignment_path(assignment), method: :patch, class: "btn btn-outline-danger" %>
-                <% else %>
-                  None
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+        <% @casa_case.case_assignments.each do |assignment| %>
+          <tr>
+            <td><%= link_to assignment&.volunteer&.display_name, edit_volunteer_path(assignment.volunteer) %></td>
+            <td><%= assignment&.volunteer&.email %></td>
+            <td>
+              <% if assignment.is_active? %>
+                <span class='badge badge-success text-uppercase'>Assigned</span>
+              <% else %>
+                <span class="badge badge-danger text-uppercase"><%= assignment.volunteer.active_volunteer ? "Unassigned" : "Deactivated volunteer" %></span>
+              <% end %>
+            </td>
+            <td>
+              <% if assignment.is_active? && (current_user.supervisor? || current_user.casa_admin?) %>
+                <%= button_to 'Unassign Volunteer', unassign_case_assignment_path(assignment), method: :patch, class: "btn btn-outline-danger" %>
+              <% else %>
+                None
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
